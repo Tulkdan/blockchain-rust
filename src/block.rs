@@ -61,12 +61,10 @@ impl Hashable for Block {
         bytes.extend(self.payload.as_bytes());
         bytes.extend(&u128_bytes(&self.difficulty));
 
-        println!("{}", &self.nonce);
-
         bytes
     }
 }
 
 pub fn check_difficulty(hash: &BlockHash, difficulty: u128) -> bool {
-    difficulty < difficulty_bytes_as_u128(&hash)
+    difficulty > difficulty_bytes_as_u128(&hash)
 }
